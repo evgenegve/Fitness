@@ -9,6 +9,7 @@ namespace Fitness.BL.Model
     /// <summary>
     /// Пользователь
     /// </summary>
+    [Serializable]
     class User
     {
         public string Name { get; }

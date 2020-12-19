@@ -9,6 +9,7 @@ namespace Fitness.BL.Model
     /// <summary>
     /// Пол
     /// </summary>
+    [Serializable]
     public class Gender
     {
         public string Name { get; }
@@ -25,7 +26,7 @@ namespace Fitness.BL.Model
 
         public override string ToString()
         {
-            return Name();
+            return Name;
         }
     }
 }
