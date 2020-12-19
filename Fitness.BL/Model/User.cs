@@ -10,13 +10,23 @@ namespace Fitness.BL.Model
     /// Пользователь
     /// </summary>
     [Serializable]
-    class User
+    public class User
     {
         public string Name { get; }
-        public Gender Gender { get; }
-        public DateTime BirthDate { get; }
+        public Gender Gender { get; set; }
+        public DateTime BirthDate { get; set; }
         public double Weight { get; set; }
         public double Height { get; set; }
+        public int Age { get { return DateTime.Now.Year - BirthDate.Year; } }
+
+        public User(string name)
+        {
+            if (String.IsNullOrWhiteSpace(name))
+            {
+                throw new ArgumentNullException("Имя пользователя не может быть пустым", nameof(name));
+            }
+            Name = name;
+        }
         public User(string name, Gender gender, DateTime birthDate, double weight, double height)
         {
             #region Проверка параметров
@@ -50,7 +60,7 @@ namespace Fitness.BL.Model
         }
         public override string ToString()
         {
-            return Name;
+            return Name + " " + Age;
         }
     }
 }
