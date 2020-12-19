@@ -13,10 +13,10 @@ namespace Fitness.BL.Controller
     {
         public User User { get; set; }
 
-        public UserController(User user)
+        public UserController(string userName, string genderName, DateTime birthDate, double weight, double height)
         {
-
-            User = user ?? throw new ArgumentNullException("Пользователь должен быть задан", nameof(user));
+            var gender = new Gender(genderName);
+            User = new User(userName, gender, birthDate, weight, height);            
         }
         public void Save()
         {
