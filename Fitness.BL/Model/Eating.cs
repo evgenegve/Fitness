@@ -12,6 +12,9 @@ namespace Fitness.BL.Model
     [Serializable]
     public class Eating
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public DateTime Moment { get; }
         public Dictionary<Food, double> Foods { get; }
         public User User { get; }
