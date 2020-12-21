@@ -14,6 +14,8 @@ namespace Fitness.CMD
             var name = Console.ReadLine();
 
             var userController = new UserController(name);
+            var eatingController = new EatingController(userController.CurrentUser);
+
             if (userController.IsNewUser)
             {
                 Console.WriteLine("Введите пол пользователя");
@@ -30,9 +32,46 @@ namespace Fitness.CMD
 
 
             Console.WriteLine(userController.CurrentUser);
+
+            Console.WriteLine("Что вы хотите сделать?");
+            Console.WriteLine("E - ввести прием пищи");
+            
+            var key = Console.ReadKey();
+            Console.WriteLine();
+
+            if (key.Key == ConsoleKey.E)
+            {
+                var foods = EnterEating();
+                eatingController.Add(foods.Item1, foods.Item2);
+
+                foreach (var item in eatingController.Eating.Foods)
+                {
+                    Console.WriteLine(item.Key.Name);
+                }
+                
+            }
+
             Console.ReadLine();
         }
 
+        private static (Food, double) EnterEating()
+        {
+            Console.WriteLine("Введите имя продукта:");
+            var foodName = Console.ReadLine();
+
+
+            var calories = InputDouble("калорийность");
+            var carbo = InputDouble("углеводы");
+            var fats = InputDouble("жиры");
+            var proteins = InputDouble("белки");
+
+
+            var product = new Food(foodName, proteins, fats, carbo, calories);
+            var weight = InputDouble("вес порции");
+
+            return (product, weight);
+
+        }
 
         static DateTime InputBirthDate()
         {
@@ -56,7 +95,7 @@ namespace Fitness.CMD
 
             do
             {
-                Console.WriteLine($"Введите {name} пользователя");
+                Console.WriteLine($"Введите {name}");
                 input = Console.ReadLine();
             }
             while (!Double.TryParse(input, out value));

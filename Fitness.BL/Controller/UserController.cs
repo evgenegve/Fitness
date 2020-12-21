@@ -9,8 +9,9 @@ using System.Threading.Tasks;
 
 namespace Fitness.BL.Controller
 {
-    public class UserController
+    public class UserController:ControllerBase
     {
+        private const string USERS_FILE_NAME = "users.dat";
         public List<User> Users { get; }
         public User CurrentUser { get; }
         public bool IsNewUser { get; } = false;
@@ -43,34 +44,15 @@ namespace Fitness.BL.Controller
             Save();
         }
 
-        private List<User> GetUsersData()
+        protected List<User> GetUsersData()
         {
-            var formatter = new BinaryFormatter();
-
-            using (var fs = new FileStream("users.dat", FileMode.OpenOrCreate))
-            {
-                if (fs.Length > 0 && formatter.Deserialize(fs) is List<User> users)
-                {
-                    return users;
-                }
-                else
-                    return new List<User>();
-            }
-            
-        }
-        
+            return Load<List<User>>(USERS_FILE_NAME) ?? new List<User>();
+        }        
 
         public void Save()
         {
-            var formatter = new BinaryFormatter();
-            
-            using (var fs = new FileStream("users.dat", FileMode.OpenOrCreate))
-            {
-                formatter.Serialize(fs, Users);
-            }            
+            Save(USERS_FILE_NAME, Users);          
         }
-
-
 
     }
 }
