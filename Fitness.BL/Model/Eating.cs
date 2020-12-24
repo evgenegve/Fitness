@@ -18,6 +18,10 @@ namespace Fitness.BL.Model
         public DateTime Moment { get; }
         public Dictionary<Food, double> Foods { get; }
         public User User { get; }
+        /// <summary>
+        /// Порция еды
+        /// </summary>
+        /// <param name="user"></param>
         public Eating(User user)
         {
             User = user ?? throw new ArgumentNullException("Пользователь не может быть пустым", nameof(user));
