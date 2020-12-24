@@ -29,7 +29,7 @@ namespace Fitness.BL.Controller.Tests
             eatingController.Add(food, 100);
 
             //Assert
-            Assert.AreEqual(food, eatingController.Eating.Foods.First().Key.Name);
+            Assert.AreEqual(foodName, eatingController.Eating.Foods.Last().Key.Name);
         }
     }
 }
