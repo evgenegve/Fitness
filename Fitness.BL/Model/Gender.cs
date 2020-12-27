@@ -16,13 +16,11 @@ namespace Fitness.BL.Model
         public string Name { get; set; }
         public virtual ICollection<User> Users { get; set; }
         public Gender() { }
-
         public Gender(string name)
         {
             if (String.IsNullOrWhiteSpace(name))
             {
                 throw new ArgumentNullException("Пол не может быть пустым", nameof(name));
-
             }
             Name = name;
         }

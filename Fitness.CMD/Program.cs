@@ -17,9 +17,8 @@ namespace Fitness.CMD
             var culture = CultureInfo.CreateSpecificCulture("ru_ru");
             var resourceManager = new ResourceManager("Fitness.CMD.Languages.Messages", typeof(Program).Assembly);
 
-            Console.WriteLine(resourceManager.GetString("Hello", culture ));
-
-            Console.WriteLine(resourceManager.GetString("EnterName", culture));
+            
+            Console.WriteLine("Введите имя");
             var name = Console.ReadLine();
 
             var userController = new UserController(name);
@@ -31,7 +30,7 @@ namespace Fitness.CMD
                 Console.WriteLine("Введите пол пользователя");
                 var gender = Console.ReadLine();
 
-                var birthDate = InputBirthDate();
+                var birthDate = InputDateTime("дату рождения");
 
                 var weight = InputDouble("вес");
                 
@@ -40,9 +39,7 @@ namespace Fitness.CMD
                 userController.SetNewUserData(gender, birthDate, weight, height);
             }
 
-
             Console.WriteLine(userController.CurrentUser);
-
             Console.WriteLine("Что вы хотите сделать?");
             Console.WriteLine("E - ввести прием пищи");
             Console.WriteLine("A - ввести упражнение");
@@ -83,17 +80,13 @@ namespace Fitness.CMD
         {
             Console.WriteLine("Введите имя продукта:");
             var foodName = Console.ReadLine();
-
-
             var calories = InputDouble("калорийность");
             var carbo = InputDouble("углеводы");
             var fats = InputDouble("жиры");
             var proteins = InputDouble("белки");
-
-
-            var product = new Food(foodName, proteins, fats, carbo, calories);
             var weight = InputDouble("вес порции");
 
+            var product = new Food(foodName, proteins, fats, carbo, calories);
             return (product, weight);
 
         }
@@ -106,38 +99,20 @@ namespace Fitness.CMD
             var start = InputDateTime("начало");
             var end = InputDateTime("конец");
 
-
-
             return (start, end, new Activity(activityName,calories));
 
         }
 
-        static DateTime InputBirthDate()
-        {
-            DateTime birthDate; // date of birth
-            string input;
-
-            do
-            {
-                Console.WriteLine("Введите дату рождения в формате дд.ММ.гггг (день.месяц.год):");
-                input = Console.ReadLine();
-            }
-            while (!DateTime.TryParse(input, out birthDate));
-
-            return birthDate;
-        }
         static DateTime InputDateTime(string name)
         {
             DateTime date; 
             string input;
-
             do
             {
                 Console.WriteLine($"Введите {name}");
                 input = Console.ReadLine();
             }
             while (!DateTime.TryParse(input, out date));
-
             return date;
         }
 
@@ -145,14 +120,12 @@ namespace Fitness.CMD
         {
             double value; // date of birth
             string input;
-
             do
             {
                 Console.WriteLine($"Введите {name}");
                 input = Console.ReadLine();
             }
             while (!Double.TryParse(input, out value));
-
             return value;
         }
 

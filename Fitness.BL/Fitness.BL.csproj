@@ -76,6 +76,10 @@
     <Compile Include="Migrations\202012271119257_SomeFixes1.designer.cs">
       <DependentUpon>202012271119257_SomeFixes1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202012271652585_Gender.cs" />
+    <Compile Include="Migrations\202012271652585_Gender.designer.cs">
+      <DependentUpon>202012271652585_Gender.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\Activity.cs" />
     <Compile Include="Model\Eating.cs" />
@@ -101,6 +105,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202012271119257_SomeFixes1.resx">
       <DependentUpon>202012271119257_SomeFixes1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012271652585_Gender.resx">
+      <DependentUpon>202012271652585_Gender.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

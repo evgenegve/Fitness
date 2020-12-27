@@ -15,7 +15,7 @@ namespace Fitness.BL.Model
 
         public int Id { get; set; }
         public string Name { get; set; }
-        public int GenderId { get; set; }
+        public int? GenderId { get; set; }
         public virtual Gender Gender { get; set; }
         public DateTime BirthDate { get; set; } = DateTime.Now;
         public double Weight { get; set; }
@@ -46,7 +46,7 @@ namespace Fitness.BL.Model
             {
                 throw new ArgumentNullException("Пол пользователя не может быть пустым", nameof(gender));
             }
-            if ((birthDate < DateTime.Parse("01.01.1900")) || (birthDate > DateTime.Now))
+            if ((birthDate < DateTime.Parse("01.01.1900")) || (birthDate >= DateTime.Now))
             {
                 throw new ArgumentException("Возраст пользователя не может быть больше 120 лет или отрицательным", nameof(birthDate));
             }
