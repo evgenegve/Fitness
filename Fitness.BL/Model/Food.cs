@@ -12,12 +12,15 @@ namespace Fitness.BL.Model
     [Serializable]
     public class Food
     {
-        public string Name { get; }
-        public double Proteins { get; } 
-        public double Fats { get; }
-        public double Carbohydrates { get; }
-        public double Calories { get; }
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public double Proteins { get; set; } 
+        public double Fats { get; set; }
+        public double Carbohydrates { get; set; }
+        public double Calories { get; set; }
+        public virtual ICollection<Eating> Eatings { get; set; }
 
+        public Food() { }
         public Food(string name) : this(name, 0, 0, 0, 0) {}
         public Food(string name, double proteins, double fats, double carbohydrates, double calories)
         {

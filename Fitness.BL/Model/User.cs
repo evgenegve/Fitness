@@ -12,12 +12,20 @@ namespace Fitness.BL.Model
     [Serializable]
     public class User
     {
-        public string Name { get; }
-        public Gender Gender { get; set; }
-        public DateTime BirthDate { get; set; }
+
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public int GenderId { get; set; }
+        public virtual Gender Gender { get; set; }
+        public DateTime BirthDate { get; set; } = DateTime.Now;
         public double Weight { get; set; }
         public double Height { get; set; }
         public int Age { get { return DateTime.Now.Year - BirthDate.Year; } }
+        public virtual ICollection<Eating> Eatings { get; set; }
+        public virtual ICollection<Exercise> Exercises { get; set; }
+
+
+        public User() { }
 
         public User(string name)
         {

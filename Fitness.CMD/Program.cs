@@ -3,6 +3,9 @@ using Fitness.BL.Model;
 using Fitness.BL.Controller;
 using System.Resources;
 using System.Globalization;
+using System.Data.SqlClient;
+using System.Data.Entity;
+using System.Collections.Generic;
 
 namespace Fitness.CMD
 {
@@ -100,7 +103,6 @@ namespace Fitness.CMD
             Console.WriteLine("Введите имя активности:");
             var activityName = Console.ReadLine();
             var calories = InputDouble("калорийность");
-            var activity = new Activity(activityName, calories);
             var start = InputDateTime("начало");
             var end = InputDateTime("конец");
 
